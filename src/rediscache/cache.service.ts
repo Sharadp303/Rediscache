@@ -6,7 +6,7 @@ export class RedisCacheService{
   
     async func(){
         await this.cacheManager.set("key","566")
-        await this.cacheManager.del('key')
+        // await this.cacheManager.del('key')
 
         const value= await this.cacheManager.get('key');
         console.log(value)
