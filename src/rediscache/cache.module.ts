@@ -1,21 +1,22 @@
 import { Module,CacheModule, CacheInterceptor} from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
-import { CacheController } from "./cache.controller";
-import { CacheService } from "./cache.service";
+import {  RedisCacheController } from "./cache.controller";
+import {  RedisCacheService } from "./cache.service";
 import * as redisStore from 'cache-manager-redis-store'
 
 
 @Module({
     imports:[CacheModule.register({
-        store:redisStore,
+          store:async()=> await redisStore({
         socket: {host:'localhost',
         port:6379}
+        })
     })],
- controllers:[CacheController],
-providers:[CacheService,{
+ controllers:[RedisCacheController],
+providers:[RedisCacheService,{
     provide:APP_INTERCEPTOR,
     useClass:CacheInterceptor
  }],
- exports:[]
+ exports:[RedisCacheModule]
 })
-export class cacheModule{}
+export class RedisCacheModule{}

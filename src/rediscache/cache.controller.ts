@@ -1,11 +1,11 @@
 import { CacheKey, CacheTTL, Controller,Get} from "@nestjs/common";
-import { cacheService } from "./cache.service";
+import {  RedisCacheService } from "./cache.service";
 
 
 
 @Controller('cache')
-export class CacheController{
-constructor(private readonly cacheservice:cacheService){}
+export class RedisCacheController{
+constructor(private readonly cacheservice:RedisCacheService){}
 @Get('get')
 @CacheKey("new-Cache")
 @CacheTTL(60000)

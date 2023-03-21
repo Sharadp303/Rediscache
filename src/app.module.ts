@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { cacheModule } from './rediscache/cache.module';
+import { RedisCacheModule } from './rediscache/cache.module';
 
 @Module({
-  imports: [cacheModule],
+  imports: [RedisCacheModule],
   controllers: [],
   providers: [],
 })
